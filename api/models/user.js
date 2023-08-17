@@ -1,24 +1,41 @@
 const mongoose = require('mongoose');
-const messageSchema = new mongoose.Schema({
-  senderId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-  },
-  receiverId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-  },
-  messageType: {
+const userSchema = new mongoose.Schema({
+  name: {
     type: String,
-    enum: ['text', 'image'],
+    required: true,
   },
-  message: String,
-  imageUrl: String,
-  timeStamp: {
-    type: Date,
-    default: Date.now,
+  email: {
+    type: String,
+    required: true,
+    unique: true,
   },
+  password: {
+    type: String,
+    required: true,
+  },
+  image: {
+    type: String,
+    required: true,
+  },
+  friendRequest: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
+  friends: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
+  sentFriendRequest: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
 });
 
-const Message = mongoose.model('Message', messageSchema);
-module.exports = Message;
+const User = mongoose.model('User', userSchema);
+module.exports = User;
