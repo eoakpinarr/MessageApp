@@ -5,8 +5,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 function HomeScreen() {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
+    <View className="bg-red-900 flex-1 justify-center items-center">
+      <Text className="text-2xl text-white font-semibold">Home Screen</Text>
     </View>
   );
 }
